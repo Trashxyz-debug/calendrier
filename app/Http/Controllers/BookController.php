@@ -38,6 +38,7 @@ class BookController extends Controller
             'event_id' => 'required'
         ];
 
+        // Essai
         $validator = Validator::make($input, $request_data);
 
         // invalid request
