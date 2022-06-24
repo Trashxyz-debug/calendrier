@@ -17,6 +17,7 @@
             </div>
         </div>
     </div>
+    <a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#loginModal">{{ route('auth.login-modal') }}</a>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/moment.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
@@ -63,23 +64,19 @@
                 allDaySlot: false,
                 eventClick: function (event) {
                     var eventConfirm = confirm('Etes-vous sûr de vouloir réserver cet évènement ?');
-                  //var start = $.fullCalendar.formatDate(start, "YYYY-MM-DD HH:mm:ss");
-                    //var end = $.fullCalendar.formatDate(end, "YYYY-MM-DD HH:mm:ss");
 
                     if (eventConfirm) {
                         $.ajax({
                             type: "post",
                             url: "{{ route('book.create') }}",
                             data: {
-                                event_id: event.id,
-                                // title: event.title,
-                                // start: start,
-                                // end: end
+                                id: event.id,
                             },
                             success: function (response) {
+                                calendar.fullCalendar('removeEvents', event.id);
                                 iziToast.success({
                                     position: 'topRight',
-                                    message: 'Evenement supprimé.',
+                                    message: 'Evenement supprimé.'
                                 });
                             }
                         });
@@ -88,5 +85,6 @@
             });
         });
     </script>
+
 </body>
 </html>

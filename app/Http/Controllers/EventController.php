@@ -33,13 +33,12 @@ class EventController extends Controller
      */
     public function create(Request $request)
     {
-        $input = $request->only(['title', 'start', 'end', 'allday']);
+        $input = $request->only(['title', 'start', 'end']);
 
         $request_data = [
             'title' => 'required',
             'start' => 'required',
-            'end' => 'required',
-            'allday' => 'required'
+            'end' => 'required'
         ];
 
         $validator = Validator::make($input, $request_data);
@@ -48,20 +47,19 @@ class EventController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'message' => $input['allday']
+                'message' => 'Erreur de validation des dates'
             ]);
         }
 
         $event = Event::create([
             'title' => $input['title'],
             'start' => $input['start'],
-            'end' => $input['end'],
-            'allday' => $input['allday']
+            'end' => $input['end']
         ]);
 
         return response()->json([
-            'success' => $input['allday'],
-            'data' => $input['allday']
+            'success' => true,
+            'data' => $event
         ]);
     }
 
@@ -72,14 +70,13 @@ class EventController extends Controller
      */
     public function edit(Request $request)
     {
-        $input = $request->only(['id', 'title', 'start', 'end', 'allday']);
+        $input = $request->only(['id', 'title', 'start', 'end']);
         // $input = $request->only(['id']);
         $request_data = [
             'id' => 'required',
             'title' => 'required',
             'start' => 'required',
-            'end' => 'required',
-            'allday' => 'required'
+            'end' => 'required'
         ];
 
         $validator = Validator::make($input, $request_data);
@@ -97,8 +94,7 @@ class EventController extends Controller
             ->update([
                 'title' => $request['title'],
                 'start' => $request['start'],
-                'end' => $request['end'],
-                'allday' => $request['allday']
+                'end' => $request['end']
             ]);
 
         return response()->json([

@@ -30,10 +30,5 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('create', [CalendrierController::class, 'create']);
-
-Route::get('/full-calendar', [FullCalendarController::class, 'index']);
-
-Route::post('/full-calendar/action', [FullCalendarController::class, 'action']);
 
 require __DIR__.'/auth.php';

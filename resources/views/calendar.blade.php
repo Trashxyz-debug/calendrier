@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>FullCalndar example</title>
+    <title>Agenda</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
@@ -73,20 +73,13 @@
                     if (event_name) {
                         var start = $.fullCalendar.formatDate(start, "YYYY-MM-DD HH:mm:ss");
                         var end = $.fullCalendar.formatDate(end, "YYYY-MM-DD HH:mm:ss");
-                        var debut = new Date(start);
-                        var fin = new Date(end);
-                        var journee = new String();
-
-                        ( debut.getTime() - fin.getTime() == -86400000) ? journee = 'true' : journee = 'false';
-                        alert(journee);
 
                         $.ajax({
                             url: "{{ route('calendar.create') }}",
                             data: {
                                 title: event_name,
                                 start: start,
-                                end: end,
-                                allday: journee
+                                end: end
                             },
                             type: 'post',
                             success: function (data) {
@@ -99,8 +92,7 @@
                                     id: data.id,
                                     title: event_name,
                                     start: start,
-                                    end: end,
-                                    allDay: journee
+                                    end: end
                                 }, true);
                                 calendar.fullCalendar('unselect');
                             }
@@ -110,11 +102,6 @@
                 eventDrop: function (event, delta) {
                     var start = $.fullCalendar.formatDate(event.start, "YYYY-MM-DD HH:mm:ss");
                     var end = $.fullCalendar.formatDate(event.end, "YYYY-MM-DD HH:mm:ss");
-                    var debut = new Date(start);
-                    var fin = new Date(end);
-                    var journee = new String();
-
-                    ( debut.getTime() - fin.getTime() == -86400000) ? journee = true : journee = false;
 
                     $.ajax({
                         url: "{{ route('calendar.edit') }}",
@@ -122,8 +109,7 @@
                             title: event.title,
                             start: start,
                             end: end,
-                            id: event.id,
-                            allday: journee
+                            id: event.id
                         },
                         dataType: 'json',
                         type: "put",

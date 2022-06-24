@@ -14,12 +14,7 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->boolean('allday');
-            $table->timestamps();
+            $table->boolean('test');
         });
     }
 
@@ -30,6 +25,8 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::table('events', function ($table) {
+          $table->boolean('test');
+        });
     }
 }
