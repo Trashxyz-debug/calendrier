@@ -37,7 +37,6 @@
 
             // initialize calendar in all events
             var calendar = $('#calendar').fullCalendar({
-                themeSystem: 'bootstrap4',
                 header: {
                   left: 'prev,next today',
                   center: 'title',
@@ -46,7 +45,7 @@
                 defaultView:'agendaWeek',
                 locale: 'fr',
                 buttonIcons: true, // show the prev/next text
-                weekNumbers: true, // Affiche le numéro de semaine
+                weekNumbers: false, // Affiche le numéro de semaine
                 navLinks: true, // can click day/week names to navigate views
                 editable: true, //
                 firstDay: 1, // Lundi : premier jour de la semaine
@@ -59,6 +58,10 @@
                 eventLimit: true,
                 displayEventTime: true,
                 timeFormat: 'H:mm',
+                allDaySlot: false,
+                height: 665,
+                eventTextColor: 'white',
+                //contentHeight: 650,
                 // showNonCurrentDates: true,
                 // eventRender: function (event, element, view) {
                 //     if (event.allDay === 'true') {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -15,15 +16,48 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
             $events = Event::whereDate('start', '>=', $request->start)
                 ->whereDate('end', '<=', $request->end)
                 ->get();
 
+                // Mise en couleur selon si l'évènement est réservé ou non
+                foreach($events as $event) {
+                  if($event->book) {
+                    $event['color'] = '#760f6f';
+                  } 
+                }
+
             return response()->json($events);
         }
 
-        return view('calendar');
+        // Si l'utilisateur est connecté, on récupère son prénom et ses initiales
+        if(auth()->id() != null ) {
+          $prenom = auth()->user()->prenom;
+          $initiale = strtoupper(substr(auth()->user()->prenom, 0, 1)).strtoupper(substr(auth()->user()->nom, 0, 1)); }
+        else { $prenom = ''; $initiale = '';}
+
+        // Récupération des évènements réservés
+        $datas = Event::join('users', 'events.user_id', '=', 'users.id')
+                  ->select('events.id', 'events.start', 'events.end', 'users.nom', 'users.prenom')
+                  ->where('book', '=', 1)
+                  ->orderBy('events.start', 'asc')
+                  ->get();
+
+        // foreach($datas as $data) {
+        //    $day = Carbon::parse($data->start)->format('d/m/Y');
+        //    array_push($data, day->$day);
+        //    dd($data);
+        // }
+        foreach($datas as $data) {
+          $data['jour'] = Carbon::parse($data->start)->format('d/m/Y');
+          $data->start = Carbon::parse($data->start)->format('H:i');
+          $data->end = Carbon::parse($data->end)->format('H:i');
+        }
+
+        return view('home.admin', compact('prenom', 'initiale', 'datas'));
+
     }
 
     /**

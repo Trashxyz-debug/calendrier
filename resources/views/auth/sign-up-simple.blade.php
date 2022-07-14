@@ -10,7 +10,6 @@
 <meta name="author" content="">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="{{ asset('assets/css/auth/volt.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/auth/app.css') }}" rel="stylesheet">
 
 
 </head>
@@ -38,31 +37,17 @@
                           @csrf
                           <!-- Form -->
                           <div class="form-group mb-4">
-                              <label for="nom">{{ __('Name') }}</label>
+                              <label for="email">{{ __('Email') }}</label>
                               <div class="input-group">
                                   <span class="input-group-text" id="basic-addon1">
-                                      <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
-                                      </svg>
+                                      <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                                   </span>
-                                  <input type="nom" class="form-control" placeholder="Durand" id="nom" name="nom" autofocus required>
-                              </div>
-                          </div>
-                          <!-- Form -->
-                          <div class="form-group mb-4">
-                              <label for="prenom">{{ __('Lastname') }}</label>
-                              <div class="input-group">
-                                  <span class="input-group-text" id="basic-addon1">
-                                      <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
-                                      </svg>
-                                  </span>
-                                  <input type="prenom" class="form-control" placeholder="Hervé" id="prenom" name="prenom" autofocus required>
+                                  <input type="email" class="form-control" placeholder="example@company.com" id="email" name="email" autofocus required>
                               </div>
                           </div>
                           <!-- End of Form -->
                           <!-- Form -->
-                          <div class="form-group mb-4">
+                          {{-- <div class="form-group mb-4">
                               <label for="tel">{{ __('Phone number') }}</label>
                               <div class="input-group">
                                   <span class="input-group-text" id="basic-addon1">
@@ -73,51 +58,19 @@
                                   </span>
                                   <input type="tel" class="form-control" placeholder="06 05 04 03 02" id="tel" name="tel" autofocus required>
                               </div>
-                          </div>
+                          </div> --}}
                           <!-- End of Form -->
                           <!-- Form -->
                           <div class="form-group mb-4">
-                              <label for="email">{{ __('Email') }}</label>
+                              <label for="password">{{ __('Password') }}</label>
                               <div class="input-group">
-                                  <span class="input-group-text" id="basic-addon1">
-                                      <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                  <span class="input-group-text" id="basic-addon2">
+                                      <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
                                   </span>
-                                  <input type="email" class="form-control" placeholder="example@company.com" id="email" name="email" autofocus required>
+                                  <input type="password" placeholder="Password" class="form-control" id="password" name="password" required>
                               </div>
                           </div>
                           <!-- End of Form -->
-                          <div class="form-group">
-                              <!-- Form -->
-                              <div class="form-group mb-4">
-                                  <label for="password">{{ __('Password') }}</label>
-                                  <div class="input-group">
-                                      <span class="input-group-text" id="basic-addon2">
-                                          <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                                      </span>
-                                      <input type="password" placeholder="Password" class="form-control" id="password" name="password" required>
-                                  </div>
-                              </div>
-                              <!-- End of Form -->
-                              <!-- Form -->
-                              <div class="form-group mb-4">
-                                  <label for="confirm_password">{{ __('Confirm Password') }}</label>
-                                  <div class="input-group">
-                                      <span class="input-group-text" id="basic-addon2">
-                                          <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                                      </span>
-                                      <input type="password" placeholder="Confirm Password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                                  </div>
-                              </div>
-                              <!-- End of Form -->
-                              {{-- <div class="mb-4">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="remember">
-                                      <label class="form-check-label fw-normal mb-0" for="remember">
-                                          {{ __('I agree to the terms and conditions') }}</a>
-                                      </label>
-                                  </div>
-                              </div> --}}
-                          </div>
                           <div class="d-grid">
                               <button type="submit" class="btn btn-gray-800">{{ __('Sign up') }}</button>
                           </div>
@@ -148,5 +101,11 @@
   </section>
 
 </body>
+<script>
+document.getElementById('tel').addEventListener('input', function (e) {
+  var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
+  e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2] + ' ' + x[3] + ' ' + x[4] + ' ' + x[5];
+});
+</script>
 
 </html>

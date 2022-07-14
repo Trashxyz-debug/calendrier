@@ -1,20 +1,6 @@
-@extends('layouts.auth')
+@extends('layouts.admin')
 
 @section('calendrier')
-
-  @if (Route::has('login'))
-      <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-          @auth
-              <a href="{{ url('/admin') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Calendrier</a>
-          @else
-              <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-              {{-- @if (Route::has('register')) --}}
-                  <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-              {{-- @endif --}}
-          @endauth
-      </div>
-  @endif
 
   <div class="right_col" role="main">
     <div class="">
@@ -30,6 +16,13 @@
 
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          @foreach ($datas as $data)
+              <p>{{ $data->id }} - Réservation le  {{ $data->jour }} de  {{ $data->start }} à  {{ $data->end }} par {{ $data->prenom }} {{ $data->nom }}</p>
+          @endforeach
         </div>
       </div>
     </div>

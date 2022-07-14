@@ -72,7 +72,6 @@
 </div>
 
 @section('scripts')
-@parent
 
 @if($errors->has('email') || $errors->has('password'))
     <script>

@@ -16,23 +16,26 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('calendar', [EventController::class, 'index'])->name('calendar.index');
-Route::post('calendar/create-event', [EventController::class, 'create'])->name('calendar.create');
-Route::put('calendar/edit-event', [EventController::class, 'edit'])->name('calendar.edit');
-Route::delete('calendar/remove-event', [EventController::class, 'destroy'])->name('calendar.destroy');
+Route::get('/admin', [EventController::class, 'index'])->middleware(['auth', 'isadmin'])->name('calendar.index');
+Route::post('/admin/create-event', [EventController::class, 'create'])->middleware(['auth', 'isadmin'])->name('calendar.create');
+Route::put('/admin/edit-event', [EventController::class, 'edit'])->middleware(['auth', 'isadmin'])->name('calendar.edit');
+Route::delete('/admin/remove-event', [EventController::class, 'destroy'])->middleware(['auth', 'isadmin'])->name('calendar.destroy');
 
-Route::get('book', [BookController::class, 'index'])->name('book.index');
-Route::post('book/book-event', [BookController::class, 'create'])->name('book.create');
+Route::get('/', [BookController::class, 'index'])->name('book.index');
+Route::post('book/book-event', [BookController::class, 'create'])->middleware(['auth' ,'verified'])->name('book.create');
 
-Route::view('/', 'welcome');
+// Route::view('/', 'welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/admin', function () {
-    return view('home.admin');
-})->middleware(['auth'])->name('admin');
+// Route::get('/admin', function () {
+//     return view('home.admin');
+// })->middleware(['auth'])->name('admin');
 
+Route::get('test', function () {
+    return view('tel');
+});
 
 require __DIR__.'/auth.php';

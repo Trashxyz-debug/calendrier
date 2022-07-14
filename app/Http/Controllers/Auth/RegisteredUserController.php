@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
     public function create()
     {
         // return view('auth.register');
-        return view('auth.sign-up');
+        return view('auth.sign-up-simple');
     }
 
     /**
@@ -35,13 +35,18 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'name' => ['required', 'string', 'max:191'],
+            // 'nom' => ['required', 'string', 'max:191'],
+            // 'prenom' => ['required', 'string', 'max:191'],
+            // 'tel' => ['required', 'string', 'max:191'],
             'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            // 'name' => $request->name,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'tel' => $request->tel,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

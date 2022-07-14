@@ -34,7 +34,7 @@ body .fc { /* extra precedence to overcome jqui */
 .fc-unthemed .fc-popover,
 .fc-unthemed .fc-list-view,
 .fc-unthemed .fc-list-heading td {
-	border-color: #ddd;
+	border-color: #f3f3f3;
 }
 
 .fc-unthemed .fc-popover {
@@ -519,7 +519,7 @@ temporary rendered events).
 .fc-event {
 	position: relative; /* for resize handle and other inner positioning */
 	display: block; /* make the <a> tag block */
-	font-size: .85em;
+	font-size: 12px;
 	line-height: 1.3;
 	border-radius: 3px;
 	border: 1px solid #3a87ad; /* default BORDER color */
@@ -1403,4 +1403,40 @@ be a descendant of the grid when it is being dragged.
 
 .fc-unthemed .fc-list-empty { /* theme will provide own background */
 	background-color: #eee;
+}
+
+.fc-v-event {
+    border: 0;
+}
+
+td.fc-head-container {
+	border: none;
+}
+
+.fc th {
+	border: none;
+}
+
+.bg-gradient-warning {
+		cursor: pointer;
+    background-image: linear-gradient(195deg, #ffa726, #fb8c00);
+}
+
+a.fc-event {
+	    box-shadow: rgb(0 0 0 / 7%) 0px 1px 2px, rgb(0 0 0 / 7%) 0px 2px 4px, rgb(0 0 0 / 7%) 0px 4px 8px, rgb(0 0 0 / 7%) 0px 8px 16px, rgb(0 0 0 / 7%) 0px 16px 32px, rgb(0 0 0 / 7%) 0px 32px 64px;
+}
+a.fc-event:hover {
+	    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.card{
+	    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+			border:0;
+			--bs-card-border-radius: 0.75rem;
+}
+
+.fc-time-grid .fc-slats td {
+	font-weight: bold
+}
+.fc-toolbar h2 {
+    font-weight: bold;
 }
